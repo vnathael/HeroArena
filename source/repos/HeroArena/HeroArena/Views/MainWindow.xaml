@@ -1,0 +1,41 @@
+﻿<Window x:Class="HeroArena.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:HeroArena.ViewModels"
+        xmlns:views="clr-namespace:HeroArena.Views"
+        Title="Hero Arena" Width="900" Height="650"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource PrimaryBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{StaticResource SecondaryBrush}">
+            <TextBlock Text="HERO ARENA" FontSize="22" FontWeight="Bold"
+                       Foreground="{StaticResource AccentBrush}"
+                       VerticalAlignment="Center" Margin="20,0"/>
+        </Border>
+
+        <TabControl Grid.Row="1"
+                    Background="{StaticResource PrimaryBrush}"
+                    BorderThickness="0"
+                    Foreground="{StaticResource TextBrush}">
+
+            <TabItem Header="Héros">
+                <views:HeroView/>
+            </TabItem>
+
+            <TabItem Header="Spells">
+                <views:SpellView/>
+            </TabItem>
+
+            <TabItem Header="Combat">
+                <views:CombatView/>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

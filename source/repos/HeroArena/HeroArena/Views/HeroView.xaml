@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="HeroArena.Views.HeroView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:HeroArena.ViewModels">
+
+    <UserControl.DataContext>
+        <vm:HeroViewModel/>
+    </UserControl.DataContext>
+
+    <Grid Background="{StaticResource PrimaryBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="{StaticResource SecondaryBrush}" Margin="10">
+            <StackPanel>
+                <TextBlock Text="Héros disponibles" FontSize="16" FontWeight="Bold"
+                           Foreground="{StaticResource AccentBrush}" Margin="10,10,10,5"/>
+                <ListBox ItemsSource="{Binding Heroes}"
+                         SelectedItem="{Binding SelectedHero}"
+                         Background="Transparent" BorderThickness="0"
+                         Foreground="{StaticResource TextBrush}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="{Binding Health, StringFormat=' {0} HP'}" FontSize="12" Opacity="0.7"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1" Background="{StaticResource SecondaryBrush}" Margin="10">
+            <StackPanel Margin="20" Visibility="{Binding SelectedHero, Converter={StaticResource NullToVisibilityConverter}}">
+                <TextBlock Text="{Binding SelectedHero.Name}" FontSize="24" FontWeight="Bold"
+                           Foreground="{StaticResource AccentBrush}" Margin="0,0,0,10"/>
+                <TextBlock Text="{Binding SelectedHero.Health, StringFormat='Points de vie : {0}'}"
+                           Foreground="{StaticResource TextBrush}" FontSize="16" Margin="0,0,0,20"/>
+
+                <TextBlock Text="Sorts du héros :" FontSize="16" FontWeight="Bold"
+                           Foreground="{StaticResource TextBrush}" Margin="0,0,0,10"/>
+
+                <ItemsControl ItemsSource="{Binding SelectedHeroSpells}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#0f3460" CornerRadius="5" Margin="0,0,0,8" Padding="12,8">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold"
+                                               Foreground="{StaticResource AccentBrush}"/>
+                                    <TextBlock Text="{Binding Damage, StringFormat='Dégâts : {0}'}"
+                                               Foreground="{StaticResource TextBrush}" FontSize="12"/>
+                                    <TextBlock Text="{Binding Description}"
+                                               Foreground="{StaticResource TextBrush}" FontSize="11" Opacity="0.8"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

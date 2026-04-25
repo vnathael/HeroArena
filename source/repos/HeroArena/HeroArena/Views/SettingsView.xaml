@@ -1,0 +1,40 @@
+﻿<Window x:Class="HeroArena.Views.SettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:HeroArena.ViewModels"
+        Title="Paramètres BDD" Width="500" Height="400"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource PrimaryBrush}">
+
+    <Window.DataContext>
+        <vm:SettingsViewModel/>
+    </Window.DataContext>
+
+    <StackPanel Margin="30">
+        <TextBlock Text="Configuration de la base de données"
+                   FontSize="18" FontWeight="Bold"
+                   Foreground="{StaticResource AccentBrush}" Margin="0,0,0,20"/>
+
+        <TextBlock Text="Chaîne de connexion SQL Server :"
+                   Foreground="{StaticResource TextBrush}" Margin="0,0,0,5"/>
+
+        <TextBox Style="{StaticResource DarkTextBox}"
+                 Text="{Binding ConnectionString, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="0,0,0,20"/>
+
+        <Button Content="Sauvegarder"
+                Style="{StaticResource PrimaryButton}"
+                Command="{Binding SaveCommand}"
+                Margin="0,0,0,10"/>
+
+        <Button Content="Initialiser les données par défaut"
+                Style="{StaticResource PrimaryButton}"
+                Background="#0f3460"
+                Command="{Binding InitDataCommand}"
+                Margin="0,0,0,20"/>
+
+        <TextBlock Text="{Binding StatusMessage}"
+                   Foreground="LightGreen" FontSize="13"
+                   HorizontalAlignment="Center" TextWrapping="Wrap"/>
+    </StackPanel>
+</Window>
