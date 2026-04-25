@@ -98,7 +98,7 @@ CREATE TABLE HeroSpell (
 ### 1. Cloner le repository
 
 ```bash
-git clone https://github.com/TON_USERNAME/HeroArena.git
+git clone https://github.com/vnathael/HeroArena.git
 ```
 
 ### 2. Ouvrir le projet dans Visual Studio 2022
